@@ -1,0 +1,36 @@
+package models
+
+import "time"
+
+type Post struct {
+	Title       string `json:"title,omitempty"`
+	Excerpt     string `json:"excerpt,omitempty"`
+	Content     string `json:"content,omitempty"`
+	Thumbnail   string `json:"thumbnail,omitempty"`
+	Meme        string `json:"meme,omitempty"`
+	District    string `json:"district,omitempty"`
+	Slug        string `json:"slug,omitempty"`
+	Author      string `json:"author,omitempty"`
+	Audio       string `json:"audio,omitempty"`
+	HasAudio    string `json:"hasAudio,omitempty"`
+	PublishedBy string `json:"published_by,omitempty"`
+	User        string `json:"user,omitempty"`
+	Category    string `json:"category,omitempty"`
+	Baylag      string `json:"baylag,omitempty"`
+	//Meta        PostMeta  `json:"meta,omitempty"`
+	Status      int       `json:"status,omitempty"`
+	Type        string    `json:"type,omitempty"`
+	PublishedOn int64     `json:"type,omitempty"`
+	CreatedOn   int64     `json:"created_on,omitempty"`
+	UpdatedOn   int64     `json:"updated_on,omitempty"`
+	Date        time.Time `json:"updated_on,omitempty"`
+	//Liked       PostLiked `json:"liked,omitempty"`
+}
+
+// TODO:: Add model list of this
+//type PostMeta struct {
+//}
+//
+//// TODO:: Add model list of this
+//type PostLiked struct {
+//}
