@@ -15,7 +15,7 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 	var features []models.Post
 	var nuktanazars []models.Post
 
-	c.App.DB.C("posts").Find(bson.M{"type": "feature",}).Limit(11).Select(selectFields).Sort("-published_on").All(&features)
+	c.App.DB.C("posts").Find(bson.M{"type": "feature", "category": "election"}).Limit(11).Select(selectFields).Sort("-published_on").All(&features)
 
 	// List of categories we need
 	categories := [5]string{"nuktanazar", "nuktanazar", "baylag", "baylag", "terrorism-1"}
