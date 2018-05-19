@@ -15,7 +15,7 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 	var features []models.Post
 	var nuktanazars []models.Post
 
-	c.App.DB.C("posts").Find(bson.M{"type": "feature",}).Limit(11).Select(selectFields).All(&features)
+	c.App.DB.C("posts").Find(bson.M{"type": "feature",}).Limit(11).Select(selectFields).Sort("-published_on").All(&features)
 
 	// List of categories we need
 	categories := [5]string{"nuktanazar", "nuktanazar", "baylag", "baylag", "terrorism-1"}
@@ -36,14 +36,14 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 			}
 			BayLagFetched = true
 		}
-		c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": category}).Skip(offset).Select(selectFields).One(&post)
+		c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": category}).Skip(offset).Sort("-published_on").Select(selectFields).One(&post)
 		if post.Title != "" {
 			nuktanazars = append(nuktanazars, post)
 		}
 	}
 
 	// get Videos
-	c.App.DB.C("posts").Find(bson.M{"type": "video"}).Limit(7).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "content": 1, "slug": 1}).All(&videos)
+	c.App.DB.C("posts").Find(bson.M{"type": "video"}).Limit(7).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "content": 1, "slug": 1}).Sort("-published_on").All(&videos)
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"features":   features,
@@ -53,21 +53,16 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 
 }
 
-type UpdatesParams struct {
-	Page string `json:"page"`
-}
-
 func (c *Controllers) NuktanazarUpdates(ctx *gin.Context) {
 
 	selectFields := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1}
 	limit := 10
-	ParamsString := ctx.Query("params")
-	params := c.GetParams(ParamsString)
+	params := c.GetParams(ctx)
 	Page := params["page"].(float64)
 	Skip := limit * int(Page)
 	var posts []models.Post
 
-	c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": "election-update"}).Skip(Skip).Limit(limit).Select(selectFields).All(&posts)
+	c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": "election-update"}).Skip(Skip).Limit(limit).Select(selectFields).Sort("-published_on").All(&posts)
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"posts": posts,

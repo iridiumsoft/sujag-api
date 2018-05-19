@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/gin-gonic/gin"
 )
 
 func (c *Controllers) Routing() error {
@@ -10,7 +11,8 @@ func (c *Controllers) Routing() error {
 	return c.Gin.Run(":" + c.Config.Port)
 }
 
-func (c *Controllers) GetParams(params string) map[string]interface{} {
+func (c *Controllers) GetParams(ctx *gin.Context) map[string]interface{} {
+	params := ctx.Query("params")
 	var model interface{}
 	if params != "" {
 		in := []byte(params)

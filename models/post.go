@@ -20,10 +20,10 @@ type Post struct {
 	//Meta        PostMeta  `json:"meta,omitempty"`
 	Status      int       `json:"status,omitempty"`
 	Type        string    `json:"type,omitempty"`
-	PublishedOn int64     `json:"type,omitempty"`
+	PublishedOn int64     `json:"published_on,omitempty"`
 	CreatedOn   int64     `json:"created_on,omitempty"`
 	UpdatedOn   int64     `json:"updated_on,omitempty"`
-	Date        time.Time `json:"updated_on,omitempty"`
+	Date        time.Time `json:"date,omitempty"`
 	//Liked       PostLiked `json:"liked,omitempty"`
 }
 
