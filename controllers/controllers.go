@@ -21,25 +21,16 @@ type Controllers struct {
 	Gin    *gin.Engine
 }
 
-func maxRequestsAtOnce(n int) gin.HandlerFunc {
-	s := make(chan struct{}, n)
-	return func(c *gin.Context) {
-		s <- struct{}{}
-		defer func() { <-s }()
-		c.Next()
-	}
-}
-
 var allowedMethods = "GET, PUT, POST, DELETE"
 
 func initGin() *gin.Engine {
 	g := gin.New()
+	g.Use(security)
 	g.Use(gin.Recovery())
-	g.Use(maxRequestsAtOnce(50))
 	g.Use(cors.Middleware(cors.Config{
 		Origins:        "*",
 		Methods:        allowedMethods,
-		RequestHeaders: "token, Origin, Authorization, Content-Type, Access-Control-Allow-Origin",
+		RequestHeaders: "Origin, Content-Type, Access-Control-Allow-Origin",
 		ExposedHeaders: "",
 		MaxAge:         50 * time.Second,
 	}))
@@ -64,6 +55,7 @@ func New(config conf.Main, application *app.App) *Controllers {
 	}
 }
 
+// its like p_rr function to print in json format
 func (c *Controllers) Print(data interface{}) {
 	json_data, _ := json.Marshal(data)
 	fmt.Printf("%s\n", json_data)

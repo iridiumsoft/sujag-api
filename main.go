@@ -10,15 +10,13 @@ import (
 )
 
 func main() {
-
-	logrus.SetFormatter(&logrus.TextFormatter{
-		FullTimestamp: true,
-	})
+	
+	configure()
 
 	config := conf.FromFile("conf/config.json")
 
 	db, err := initDB(config)
-
+	
 	for err != nil {
 		logrus.WithError(err).Error("Failed init connection to database. Trying again after 10 seconds")
 		time.Sleep(time.Second * 10)
@@ -32,8 +30,19 @@ func main() {
 	logrus.Fatal(c.Routing())
 }
 
+func configure() {
+	
+	// Set logger format
+	logrus.SetFormatter(&logrus.TextFormatter{
+		FullTimestamp: true,
+	})
+
+}
+
 func initDB(conf conf.Main) (*mgo.Database, error) {
+
 	session, err := mgo.Dial("mongodb://localhost/" + conf.DB.Name)
 	db := session.DB(conf.DB.Name)
 	return db, err
+
 }
