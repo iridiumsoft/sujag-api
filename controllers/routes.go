@@ -1,23 +1,20 @@
 package controllers
 
-import (
-	"encoding/json"
-	"github.com/gin-gonic/gin"
-)
-
 func (c *Controllers) Routing() error {
-	c.Gin.GET("/main/posts", c.MainPagePosts)
-	c.Gin.GET("/main/updates", c.NuktanazarUpdates)
-	return c.Gin.Run(":" + c.Config.Port)
-}
 
-func (c *Controllers) GetParams(ctx *gin.Context) map[string]interface{} {
-	params := ctx.Query("params")
-	var model interface{}
-	if params != "" {
-		in := []byte(params)
-		json.Unmarshal(in, &model)
-	}
-	param, _ := model.(map[string]interface{})
-	return param
+	// Welcome page
+	//c.Gin.GET("/", func(context *gin.Context) {
+	//	context.HTML(http.StatusOK, "index.html", gin.H{
+	//		"title": "Main website",
+	//	})
+	//})
+
+	// Main Page
+	HomePage := c.Gin.Group("/home")
+	HomePage.GET("/posts", c.MainPagePosts)
+	HomePage.GET("/updates", c.MainPageNuktanazarUpdates)
+	HomePage.GET("/election", c.MainPageElectionPosts)
+	HomePage.GET("/mobile-posts", c.MainPageMobilePosts)
+
+	return c.Gin.Run(":" + c.Config.Port)
 }

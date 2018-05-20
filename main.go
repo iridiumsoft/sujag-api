@@ -10,13 +10,13 @@ import (
 )
 
 func main() {
-	
+
 	configure()
 
 	config := conf.FromFile("conf/config.json")
 
 	db, err := initDB(config)
-	
+
 	for err != nil {
 		logrus.WithError(err).Error("Failed init connection to database. Trying again after 10 seconds")
 		time.Sleep(time.Second * 10)
@@ -31,7 +31,7 @@ func main() {
 }
 
 func configure() {
-	
+
 	// Set logger format
 	logrus.SetFormatter(&logrus.TextFormatter{
 		FullTimestamp: true,
