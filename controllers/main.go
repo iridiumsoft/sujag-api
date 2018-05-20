@@ -28,7 +28,7 @@ func initGin() *gin.Engine {
 	g.Use(security)
 	g.Use(gin.Recovery())
 	g.Use(cors.Middleware(cors.Config{
-		Origins:        "sujag.org, localhost:4200",
+		Origins:        "*",
 		Methods:        allowedMethods,
 		RequestHeaders: "Origin, Content-Type, Access-Control-Allow-Origin",
 		ExposedHeaders: "",
