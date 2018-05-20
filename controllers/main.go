@@ -24,7 +24,7 @@ var allowedMethods = "GET, PUT, POST, DELETE"
 
 func initGin() *gin.Engine {
 	g := gin.New()
-	// g.LoadHTMLGlob("views/*")
+	g.LoadHTMLGlob("views/*")
 	g.Use(security)
 	g.Use(gin.Recovery())
 	g.Use(cors.Middleware(cors.Config{
