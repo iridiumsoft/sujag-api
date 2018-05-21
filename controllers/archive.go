@@ -26,9 +26,15 @@ func (c *Controllers) getArchivePosts(ctx *gin.Context) {
 
 	if Params["type"] != nil {
 		where["type"] = Params["type"].(string)
+	} else {
+		where["type"] = "feature"
 	}
 
-	if Params["district"] != nil {
+	if Params["category"] != nil {
+		where["category"] = Params["category"].(string)
+	}
+	
+	if Params["district"] != nil && Params["district"] != "all" {
 		where["district"] = Params["district"].(string)
 	}
 
