@@ -16,13 +16,13 @@ type Post struct {
 	Category    string `json:"category,omitempty"`
 	Baylag      string `json:"baylag,omitempty"`
 	//Meta        PostMeta  `json:"meta,omitempty"`
-	Status      int    `json:"status,omitempty"`
-	Type        string `json:"type,omitempty"`
-	PublishedOn int64  `json:"published_on,omitempty"`
-	CreatedOn   int64  `json:"created_on,omitempty"`
-	UpdatedOn   int64  `json:"updated_on,omitempty"`
-	Date        string `json:"date,omitempty"`
-	//Liked       PostLiked `json:"liked,omitempty"`
+	Status      int     `json:"status,omitempty"`
+	Type        string  `json:"type,omitempty"`
+	PublishedOn int64   `json:"published_on,omitempty"`
+	CreatedOn   int64   `json:"created_on,omitempty"`
+	UpdatedOn   int64   `json:"updated_on,omitempty"`
+	Date        string  `json:"date,omitempty"`
+	Liked       float64 `json:"liked,omitempty"`
 }
 
 // TODO:: Add model list of this

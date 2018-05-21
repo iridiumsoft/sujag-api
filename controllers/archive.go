@@ -2,17 +2,17 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/user/sujag/models"
-	"gopkg.in/mgo.v2/bson"
 	"net/http"
+	"gopkg.in/mgo.v2/bson"
 	"github.com/user/sujag/util"
+	"github.com/user/sujag/models"
 )
 
 func (c *Controllers) getArchivePosts(ctx *gin.Context) {
 
 	var Posts []models.Post
 
-	SelectField := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "district": 1, "type": 1, "slug": 1, "published_on": 1}
+	SelectField := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "district": 1, "slug": 1, "published_on": 1}
 
 	where := bson.M{}
 
@@ -33,7 +33,7 @@ func (c *Controllers) getArchivePosts(ctx *gin.Context) {
 	if Params["category"] != nil {
 		where["category"] = Params["category"].(string)
 	}
-	
+
 	if Params["district"] != nil && Params["district"] != "all" {
 		where["district"] = Params["district"].(string)
 	}

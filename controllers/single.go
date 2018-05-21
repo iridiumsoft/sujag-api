@@ -20,10 +20,12 @@ func (c *Controllers) getSinglePost(ctx *gin.Context) {
 		"thumbnail":    true,
 		"type":         true,
 		"published_on": true,
+		"district":     true,
+		"liked":        true,
 		"author":       true,
 	}).One(&Post)
-
-	c.App.DB.C("authors").Find(bson.M{"username": Post.Author}).Select(bson.M{"info": true, "name": true, "username": true}).One(&Author)
+	
+	c.App.DB.C("authors").Find(bson.M{"username": Post.Author}).Select(bson.M{"info": true, "name": true, "username": true, "dp_lg": true}).One(&Author)
 
 	ctx.JSON(http.StatusOK, bson.M{
 		"post":   Post,
