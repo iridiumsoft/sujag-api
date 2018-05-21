@@ -16,7 +16,7 @@ func (c *Controllers) Routing() error {
 
 	// Main Page
 	HomePage := c.Gin.Group("/home")
-	HomePage.GET("/", c.MainPagePosts)
+	HomePage.GET("/posts", c.MainPagePosts)
 	HomePage.GET("/updates", c.MainPageNuktanazarUpdates)
 	HomePage.GET("/election", c.MainPageElectionPosts)
 	HomePage.GET("/mobile-posts", c.MainPageMobilePosts)
