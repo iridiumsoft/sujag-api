@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c6de1fc-0dae-4c7d-abc4-e70f3b3dd5e9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/single.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/single.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/author.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/author.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,8 +73,8 @@
       <file leaf-file-name="author.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/author.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+            <state relative-caret-position="135">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -594,8 +593,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/author.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+        <state relative-caret-position="135">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
         </state>
       </provider>
     </entry>
