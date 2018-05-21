@@ -51,7 +51,7 @@ func (c *Controllers) getArchivePosts(ctx *gin.Context) {
 
 	where["status"] = 1
 
-	c.App.DB.C("posts").Find(where).Select(SelectField).Skip(Skip).Limit(Limit).All(&Posts)
+	c.App.DB.C("posts").Find(where).Select(SelectField).Sort("-published_on").Skip(Skip).Limit(Limit).All(&Posts)
 
 	Total, _ := c.App.DB.C("posts").Find(where).Count()
 
@@ -79,7 +79,7 @@ func (c *Controllers) SearchPosts(ctx *gin.Context) {
 		where["$text"] = bson.M{"$search": SearchKeywords}
 	}
 	c.App.DB.C("posts").Find(where).Skip(Skip).Limit(Limit).All(&Posts)
-	Total, _ := c.App.DB.C("posts").Find(where).Skip(Skip).Limit(Limit).Count()
+	Total, _ := c.App.DB.C("posts").Find(where).Sort("-published_on").Skip(Skip).Limit(Limit).Count()
 	ctx.JSON(http.StatusOK, bson.M{
 		"posts": Posts,
 		"total": Total,
