@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c6de1fc-0dae-4c7d-abc4-e70f3b3dd5e9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/controllers/archive.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/archive.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/author.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/author.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/post.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/post.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,8 +50,8 @@
       <file leaf-file-name="archive.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/archive.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="367">
+              <caret line="53" column="99" selection-start-line="53" selection-start-column="87" selection-end-line="53" selection-end-column="99" />
               <folding>
                 <element signature="e#21#157#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="single.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/single.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="97" selection-start-line="27" selection-start-column="93" selection-end-line="27" selection-end-column="97" />
+            <state relative-caret-position="287">
+              <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
               <folding>
                 <element signature="e#21#91#0" expanded="true" />
               </folding>
@@ -71,7 +71,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="author.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="author.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/author.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -80,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="post.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/post.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="46" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="46" />
+            <state relative-caret-position="375">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -159,12 +159,12 @@
         <option value="$PROJECT_DIR$/controllers/kahani.go" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/controllers/home.go" />
-        <option value="$PROJECT_DIR$/models/post.go" />
         <option value="$PROJECT_DIR$/controllers/routes.go" />
         <option value="$PROJECT_DIR$/controllers/main.go" />
-        <option value="$PROJECT_DIR$/controllers/archive.go" />
         <option value="$PROJECT_DIR$/controllers/single.go" />
         <option value="$PROJECT_DIR$/models/author.go" />
+        <option value="$PROJECT_DIR$/controllers/archive.go" />
+        <option value="$PROJECT_DIR$/models/post.go" />
       </list>
     </option>
   </component>
@@ -536,13 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/post.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="46" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/routes.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -573,30 +566,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/archive.go">
+    <entry file="file://$PROJECT_DIR$/models/author.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <element signature="e#21#157#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/single.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="97" selection-start-line="27" selection-start-column="93" selection-end-line="27" selection-end-column="97" />
+        <state relative-caret-position="287">
+          <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
           <folding>
             <element signature="e#21#91#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/author.go">
+    <entry file="file://$PROJECT_DIR$/controllers/archive.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="367">
+          <caret line="53" column="99" selection-start-line="53" selection-start-column="87" selection-end-line="53" selection-end-column="99" />
+          <folding>
+            <element signature="e#21#157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/post.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
