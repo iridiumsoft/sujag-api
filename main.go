@@ -11,9 +11,7 @@ import (
 
 func main() {
 
-	logrus.SetFormatter(&logrus.TextFormatter{
-		FullTimestamp: true,
-	})
+	configure()
 
 	config := conf.FromFile("conf/config.json")
 
@@ -32,8 +30,19 @@ func main() {
 	logrus.Fatal(c.Routing())
 }
 
+func configure() {
+
+	// Set logger format
+	logrus.SetFormatter(&logrus.TextFormatter{
+		FullTimestamp: true,
+	})
+
+}
+
 func initDB(conf conf.Main) (*mgo.Database, error) {
+
 	session, err := mgo.Dial("mongodb://localhost/" + conf.DB.Name)
 	db := session.DB(conf.DB.Name)
 	return db, err
+
 }
