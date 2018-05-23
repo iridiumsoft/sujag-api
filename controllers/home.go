@@ -10,14 +10,14 @@ import (
 
 func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 
-	selectFields := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1}
+	selectFields := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1, "published_on": 1}
 
 	var videos []models.Post
 	var features []models.Post
 	var nuktanazars []models.Post
 
-	c.App.DB.C("posts").Find(bson.M{"type": "feature", "category": "election", "status": 1}).Limit(11).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1, "district": 1}).Sort("-published_on").All(&features)
-
+	c.App.DB.C("posts").Find(bson.M{"type": "feature", "category": "election", "status": 1}).Limit(11).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1, "district": 1, "published_on": 1}).Sort("-published_on").All(&features)
+	
 	// List of categories we need
 	categories := [5]string{"nuktanazar", "nuktanazar", "baylag", "baylag", "terrorism-1"}
 
