@@ -8,12 +8,12 @@ import (
 
 func GetParams(ctx *gin.Context) map[string]interface{} {
 	params := ctx.Query("params")
-	var model interface{}
+	var data interface{}
 	if params != "" {
 		in := []byte(params)
-		json.Unmarshal(in, &model)
+		json.Unmarshal(in, &data)
 	}
-	param, _ := model.(map[string]interface{})
+	param, _ := data.(map[string]interface{})
 	return param
 }
 

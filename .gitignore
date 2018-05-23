@@ -3,3 +3,4 @@ gin
 tmp
 main
 conf/config.json
+.idea
