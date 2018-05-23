@@ -20,7 +20,8 @@ func (c *Controllers) Routing() error {
 	HomePage.GET("/updates", c.MainPageNuktanazarUpdates)
 	HomePage.GET("/election", c.MainPageElectionPosts)
 	HomePage.GET("/mobile-posts", c.MainPageMobilePosts)
-	
+	HomePage.GET("/main-footer-content", c.MainFooterContent)
+
 	// Archive
 	c.Gin.GET("/archive", c.getArchivePosts)
 
