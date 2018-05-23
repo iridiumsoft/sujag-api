@@ -75,9 +75,9 @@ func (c *Controllers) MainFooterContent(ctx *gin.Context) {
 	var kahani models.Kahani
 	var sports models.Post
 	var magazine models.Magazine
-	c.App.DB.C("kahani").Find(bson.M{}).Select(bson.M{"name": 1, "thumbnail": 1, "audio": 1}).One(&kahani)
-	c.App.DB.C("posts").Find(bson.M{"type": "sports", "status": 1}).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1}).One(&sports)
-	c.App.DB.C("magazine").Find(bson.M{}).Select(bson.M{"title": 1, "is": 1, "img": 1, "created_on": 1}).One(&magazine)
+	c.App.DB.C("kahani").Find(bson.M{}).Select(bson.M{"name": 1, "thumbnail": 1, "audio": 1}).Sort("-created_on").One(&kahani)
+	c.App.DB.C("posts").Find(bson.M{"type": "sports", "status": 1}).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1}).Sort("-published_on").One(&sports)
+	c.App.DB.C("magazine").Find(bson.M{}).Select(bson.M{"title": 1, "is": 1, "img": 1, "created_on": 1}).Sort("-created_on").One(&magazine)
 	ctx.JSON(http.StatusOK, gin.H{
 		"kahani":   kahani,
 		"sports":   sports,
