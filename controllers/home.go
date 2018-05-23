@@ -72,15 +72,12 @@ func (c *Controllers) MainPageNuktanazarUpdates(ctx *gin.Context) {
 }
 
 func (c *Controllers) MainFooterContent(ctx *gin.Context) {
-	selectFields := bson.M{"name": 1, "thumbnail": 1, "audio": 1}
-	selectSportsFields := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1}
-	selectMagazineFields := bson.M{"title": 1, "is": 1, "img": 1, "created_on": 1}
 	var kahani models.Kahani
 	var sports models.Post
 	var magazine models.Magazine
-	c.App.DB.C("kahani").Find(bson.M{}).Select(selectFields).One(&kahani)
-	c.App.DB.C("posts").Find(bson.M{"type": "sports", "status": 1}).Select(selectSportsFields).One(&sports)
-	c.App.DB.C("magazine").Find(bson.M{}).Select(selectMagazineFields).One(&magazine)
+	c.App.DB.C("kahani").Find(bson.M{}).Select(bson.M{"name": 1, "thumbnail": 1, "audio": 1}).One(&kahani)
+	c.App.DB.C("posts").Find(bson.M{"type": "sports", "status": 1}).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1}).One(&sports)
+	c.App.DB.C("magazine").Find(bson.M{}).Select(bson.M{"title": 1, "is": 1, "img": 1, "created_on": 1}).One(&magazine)
 	ctx.JSON(http.StatusOK, gin.H{
 		"kahani":   kahani,
 		"sports":   sports,
