@@ -2,6 +2,7 @@ package models
 
 type Kahani struct {
 	Name       string `json:"name,omitempty"`
+	Title       string `json:"title,omitempty"`
 	Content    string `json:"content,omitempty"`
 	Created_on int64 `json:"created_on,omitempty"`
 	Updated_on int64 `json:"created_on,omitempty"`
