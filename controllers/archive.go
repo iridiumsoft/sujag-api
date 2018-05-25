@@ -18,7 +18,7 @@ func (c *Controllers) getArchivePosts(ctx *gin.Context) {
 
 	Params := util.GetParams(ctx)
 
-	Page := 0.0
+	var Page float64
 
 	if Params["page"] != nil {
 		Page = Params["page"].(float64)
@@ -51,8 +51,9 @@ func (c *Controllers) getArchivePosts(ctx *gin.Context) {
 
 	where["status"] = 1
 
+	// TODO:: sorting is not good
 	c.App.DB.C("posts").Find(where).Select(SelectField).Skip(Skip).Limit(Limit).Sort("-published_on").All(&Posts)
-	
+
 	Total, _ := c.App.DB.C("posts").Find(where).Count()
 
 	ctx.JSON(http.StatusOK, bson.M{
@@ -63,16 +64,17 @@ func (c *Controllers) getArchivePosts(ctx *gin.Context) {
 }
 
 func (c *Controllers) SearchPosts(ctx *gin.Context) {
+
 	Params := util.GetParams(ctx)
 
-	Page := 0.00
+	var Page float64
+	Limit := 20
+	var Posts models.Post
 	if Params["page"] != nil {
 		Page = Params["page"].(float64)
 	}
-	var Posts models.Post
 	where := bson.M{}
 	where["status"] = 1
-	Limit := 20
 	Skip := int(Page) * 20
 	SearchKeywords := Params["search_keywords"].(string)
 	if SearchKeywords != "" {
@@ -84,4 +86,5 @@ func (c *Controllers) SearchPosts(ctx *gin.Context) {
 		"posts": Posts,
 		"total": Total,
 	})
+
 }

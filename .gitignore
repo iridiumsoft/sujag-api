@@ -3,3 +3,5 @@ gin
 tmp
 main
 conf/config.json
+.idea
+.DS_Store

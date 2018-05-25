@@ -10,14 +10,14 @@ import (
 
 func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 
-	selectFields := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1}
+	selectFields := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1, "published_on": 1}
 
 	var videos []models.Post
 	var features []models.Post
 	var nuktanazars []models.Post
 
-	c.App.DB.C("posts").Find(bson.M{"type": "feature", "category": "election", "status": 1}).Limit(11).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1, "district": 1}).Sort("-published_on").All(&features)
-
+	c.App.DB.C("posts").Find(bson.M{"type": "feature", "category": "election", "status": 1}).Limit(11).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1, "district": 1, "published_on": 1}).Sort("-published_on").All(&features)
+	
 	// List of categories we need
 	categories := [5]string{"nuktanazar", "nuktanazar", "baylag", "baylag", "terrorism-1"}
 
@@ -72,15 +72,12 @@ func (c *Controllers) MainPageNuktanazarUpdates(ctx *gin.Context) {
 }
 
 func (c *Controllers) MainFooterContent(ctx *gin.Context) {
-	selectFields := bson.M{"title": 1, "name": 1, "thumbnail": 1, "audio": 1}
-	selectSportsFields := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1}
-	selectMagazineFields := bson.M{"title": 1, "is": 1, "img": 1, "created_on": 1}
 	var kahani models.Kahani
 	var sports models.Post
 	var magazine models.Magazine
-	c.App.DB.C("kahani").Find(bson.M{}).Select(selectFields).One(&kahani)
-	c.App.DB.C("posts").Find(bson.M{"type": "sports", "status": 1}).Select(selectSportsFields).One(&sports)
-	c.App.DB.C("magazine").Find(bson.M{}).Select(selectMagazineFields).One(&magazine)
+	c.App.DB.C("kahani").Find(bson.M{}).Select(bson.M{"name": 1, "thumbnail": 1, "audio": 1}).Sort("-created_on").One(&kahani)
+	c.App.DB.C("posts").Find(bson.M{"type": "sports", "status": 1}).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1}).Sort("-published_on").One(&sports)
+	c.App.DB.C("magazine").Find(bson.M{}).Select(bson.M{"title": 1, "is": 1, "img": 1, "created_on": 1}).Sort("-created_on").One(&magazine)
 	ctx.JSON(http.StatusOK, gin.H{
 		"kahani":   kahani,
 		"sports":   sports,
