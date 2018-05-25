@@ -12,7 +12,7 @@ type Post struct {
 	Audio       string  `json:"audio,omitempty"`
 	HasAudio    string  `json:"hasAudio,omitempty"`
 	PublishedBy string  `json:"published_by,omitempty"`
-	PublishedOn int64   `json:"published_on,omitempty"`
+	PublishedOn int32   `json:"published_on,omitempty"`
 	User        string  `json:"user,omitempty"`
 	Category    string  `json:"category,omitempty"`
 	Baylag      string  `json:"baylag,omitempty"`
