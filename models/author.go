@@ -4,10 +4,10 @@ package models
 
 type Author struct {
 	Id       int    `json:"_id,omitempty"`
-	Name     int    `json:"name,omitempty"`
-	NameUrdu int    `json:"name_urdu,omitempty"`
-	UserName int    `json:"username,omitempty"`
-	Info     int    `json:"info,omitempty"`
+	Name     string `json:"name,omitempty"`
+	NameUrdu string `json:"name_urdu,omitempty"`
+	UserName string `json:"username,omitempty"`
+	Info     string `json:"info,omitempty"`
 	Dp       string `json:"dp,omitempty"`
 	Dp_lg    string `json:"dp_lg,omitempty"`
 	Type     string `json:"type,omitempty"`

@@ -16,6 +16,7 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 	var features []models.Post
 	var nuktanazars []models.Post
 
+	// TODO:: Get published on date, its not working for some reasons
 	c.App.DB.C("posts").Find(bson.M{"type": "feature", "category": "election", "status": 1}).Limit(11).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1, "district": 1, "published_on": 1}).Sort("-published_on").All(&features)
 
 	// List of categories we need

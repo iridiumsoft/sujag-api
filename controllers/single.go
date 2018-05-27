@@ -14,7 +14,7 @@ func (c *Controllers) getSinglePost(ctx *gin.Context) {
 	var Author models.Author
 
 	Slug := ctx.Param("slug")
-
+	
 	// TODO:: its not including published on, liked etc
 	err := c.App.DB.C("posts").Find(bson.M{"slug": Slug}).Select(bson.M{
 		"title":        1,
@@ -32,15 +32,16 @@ func (c *Controllers) getSinglePost(ctx *gin.Context) {
 	}
 
 	// TODO:: Author is not sending name, because there is urdu name
-	err = c.App.DB.C("authors").Find(bson.M{"username": Post.Author}).Select(bson.M{"info": 1, "name": 1, "username": 1, "dp_lg": 1}).One(&Author)
+	err = c.App.DB.C("authors").Find(bson.M{"username": Post.Author}).Select(bson.M{"info": 1, "name": 1, "name_urdu": 1, "username": 1, "dp_lg": 1}).One(&Author)
 
 	if err != nil {
 		log.Println("Error while getting author ", err.Error())
 	}
-
+	// we use name on front end so assign urdu name to it
+	Author.Name = Author.NameUrdu
+	Author.NameUrdu = "";
 	ctx.JSON(http.StatusOK, bson.M{
 		"post":   Post,
 		"author": Author,
 	})
-
 }

@@ -28,5 +28,8 @@ func (c *Controllers) Routing() error {
 	// Single Post
 	c.Gin.GET("/single/:slug", c.getSinglePost)
 
+	// Playground
+	c.Gin.GET("/playground", c.PlayGround)
+
 	return c.Gin.Run(":" + c.Config.Port)
 }
