@@ -15,16 +15,32 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 	var videos []models.Post
 	var features []models.Post
 	var nuktanazars []models.Post
+	var nuktanazarsTops []models.Post
+	var post models.Post
 
+	Select := bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1, "district": 1, "published_on": 1}
 	// TODO:: Get published on date, its not working for some reasons
-	c.App.DB.C("posts").Find(bson.M{"type": "feature", "category": "election", "status": 1}).Limit(11).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "slug": 1, "district": 1, "published_on": 1}).Sort("-published_on").All(&features)
+	c.App.DB.C("posts").Find(bson.M{"type": "feature", "category": "election", "status": 1}).Limit(9).Select(Select).Sort("-published_on").All(&features)
 
 	// List of categories we need
 	categories := [5]string{"nuktanazar", "nuktanazar", "baylag", "baylag", "terrorism-1"}
 
 	NuktanazarFetched := false
 	BayLagFetched := false
+	var NuktanazarFetchedSlugs []string
+
+	// Get BayLag
+	c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": "baylag"}).Select(Select).One(&post)
+	nuktanazarsTops = append(nuktanazarsTops, post)
+	NuktanazarFetchedSlugs = append(NuktanazarFetchedSlugs, post.Slug)
+
+	// Get Nuktanazar
+	c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": ""}).Select(Select).One(&post)
+	nuktanazarsTops = append(nuktanazarsTops, post)
+	NuktanazarFetchedSlugs = append(NuktanazarFetchedSlugs, post.Slug)
+
 	for _, category := range categories {
+
 		var post models.Post
 		offset := 0
 		if category == "nuktanazar" {
@@ -38,10 +54,13 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 			}
 			BayLagFetched = true
 		}
-		c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": category, "status": 1}).Skip(offset).Sort("-published_on").Select(selectFields).One(&post)
+
+		c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": category, "status": 1, "slug": bson.M{"$nin": NuktanazarFetchedSlugs}}).Skip(offset).Sort("-published_on").Select(selectFields).One(&post)
+
 		if post.Title != "" {
 			nuktanazars = append(nuktanazars, post)
 		}
+
 	}
 
 	// get Videos

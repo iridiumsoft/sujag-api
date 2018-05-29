@@ -24,13 +24,13 @@ var allowedMethods = "GET, PUT, POST, DELETE"
 
 func initGin() *gin.Engine {
 	g := gin.New()
-	g.LoadHTMLGlob("views/*")
+	// g.LoadHTMLGlob("views/*")
 	g.Use(security)
 	g.Use(gin.Recovery())
 	g.Use(cors.Middleware(cors.Config{
 		Origins:        "http://sujagbeta.com, http://www.sujagbeta.com, http://sujag.org, http://www.sujag.org, http://localhost:4200",
 		Methods:        allowedMethods,
-		RequestHeaders: "Origin, Content-Type, Access-Control-Allow-Origin, ",
+		RequestHeaders: "Origin, Content-Type, Access-Control-Allow-Origin",
 		ExposedHeaders: "",
 		MaxAge:         50 * time.Second,
 	}))
