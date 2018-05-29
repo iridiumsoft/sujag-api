@@ -67,9 +67,10 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 	c.App.DB.C("posts").Find(bson.M{"type": "video", "status": 1}).Limit(7).Select(bson.M{"title": 1, "thumbnail": 1, "excerpt": 1, "content": 1, "slug": 1}).Sort("-published_on").All(&videos)
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"features":   features,
-		"nuktanazar": nuktanazars,
-		"videos":     videos,
+		"features":       features,
+		"nuktanazar":     nuktanazars,
+		"nuktanazar-top": nuktanazarsTops,
+		"videos":         videos,
 	})
 
 }
