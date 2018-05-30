@@ -35,7 +35,7 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 	NuktanazarFetchedSlugs = append(NuktanazarFetchedSlugs, post.Slug)
 
 	// Get Nuktanazar
-	c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": ""}).Select(Select).Sort("-published_on").One(&post)
+	c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": "nuktanazar"}).Select(Select).Sort("-published_on").One(&post)
 	nuktanazarsTops = append(nuktanazarsTops, post)
 	NuktanazarFetchedSlugs = append(NuktanazarFetchedSlugs, post.Slug)
 
