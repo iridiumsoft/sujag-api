@@ -30,7 +30,7 @@ func (c *Controllers) MainPagePosts(ctx *gin.Context) {
 	var NuktanazarFetchedSlugs []string
 
 	// Get BayLag
-	c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": "baylag"}).Select(Select).One(&post)
+	c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": "election-update"}).Select(Select).One(&post)
 	nuktanazarsTops = append(nuktanazarsTops, post)
 	NuktanazarFetchedSlugs = append(NuktanazarFetchedSlugs, post.Slug)
 
