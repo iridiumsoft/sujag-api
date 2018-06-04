@@ -82,6 +82,7 @@ func (c *Controllers) MainPageNuktanazarUpdates(ctx *gin.Context) {
 	params := util.GetParams(ctx)
 	Page := params["page"].(float64)
 	Skip := limit * int(Page)
+	Skip = Skip + 1
 	var posts []models.Post
 
 	c.App.DB.C("posts").Find(bson.M{"type": "nuktanazar", "category": "election-update", "status": 1}).Skip(Skip).Limit(limit).Select(selectFields).Sort("-published_on").All(&posts)
